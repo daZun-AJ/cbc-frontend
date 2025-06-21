@@ -1,7 +1,38 @@
+import axios from "axios";
+import { useState } from "react";
+import toast from "react-hot-toast";
 import { FcGoogle } from "react-icons/fc";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function RegisterPage() {
+
+    const [firstName, setFirstName] = useState('');
+    const [lastName, setLastName] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+
+    const navigate = useNavigate();
+
+    async function handleRegister() {
+        try {
+            const response = await axios.post(import.meta.env.VITE_BACKEND_URL + '/api/users/', { 
+                firstName,
+                lastName, 
+                email, 
+                password 
+            });
+
+            toast.success(response?.data?.message || 'Registration successful!');
+            navigate('/login');
+
+        } catch (err) {
+            
+            toast.error(err?.response?.data?.message || 'Registration failed!');
+            console.log(err);
+
+        }
+    }
+
     return (
         <div className="w-full h-screen flex flex-col md:flex-row font-raleway">
 
@@ -23,28 +54,33 @@ export default function RegisterPage() {
                     {/* Register Form */}
                     <div className="mt-[30px] flex flex-col gap-[20px]">
                         <input 
+                            onChange={(e) => setFirstName(e.target.value)}
                             type="text"
                             placeholder="First Name"
                             className="w-full p-[12px] border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-400"
                         />
                         <input 
+                            onChange={(e) => setLastName(e.target.value)}
                             type="text"
                             placeholder="Last Name"
                             className="w-full p-[12px] border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-400"
                         />
                         <input 
+                            onChange={(e) => setEmail(e.target.value)}
                             type="email"
                             placeholder="Email Address"
                             className="w-full p-[12px] border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-400"
                         />
                         <input 
+                            onChange={(e) => setPassword(e.target.value)}
                             type="password"
                             placeholder="Password"
                             className="w-full p-[12px] border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-400"
                         />
 
                         <button
-                            className="w-full p-[12px] mt-[10px] bg-black text-white rounded-md hover:bg-green-500 duration-300 font-semibold"
+                            onClick={handleRegister}
+                            className="w-full p-[12px] mt-[10px] bg-black text-white rounded-md hover:text-primary duration-300 font-semibold"
                         >
                             Register
                         </button>

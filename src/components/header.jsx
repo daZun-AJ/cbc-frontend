@@ -68,6 +68,9 @@ export default function Header() {
                     <a href="/products" className="text-[20px] text-white hover:text-green-400 duration-300 transition-transform transform hover:scale-105">
                         Products
                     </a>
+                    <a href="/reviews" className="text-[20px] text-white hover:text-green-400 duration-300 transition-transform transform hover:scale-105">
+                        Reviews
+                    </a>
                     <a href="/contact" className="text-[20px] text-white hover:text-green-400 duration-300 transition-transform transform hover:scale-105">
                         Contact
                     </a>
