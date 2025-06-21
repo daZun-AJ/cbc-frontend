@@ -9,7 +9,7 @@ export default function Header() {
     const [sideDrawerOpened, setSideDrawerOpened] = useState(false);
 
     return (
-        <div className="w-full lg:w-[880px] px-[40px] py-[20px] bg-black rounded-full flex justify-between items-center relative z-50">
+        <div className="w-full lg:w-[980px] px-[40px] py-[20px] bg-black rounded-full flex justify-between items-center relative z-50">
             <Link to="/" className="text-[24px] text-white font-raleway">CBC</Link>
 
             <div className="hidden lg:flex gap-[50px] items-center">
@@ -17,6 +17,7 @@ export default function Header() {
                     <Link to="/" className="text-[16px] text-white">Home</Link>
                     <Link to="/about" className="text-[16px] text-white">About Us</Link>
                     <Link to="/products" className="text-[16px] text-white">Products</Link>
+                    <Link to="/reviews" className="text-[16px] text-white">Reviews</Link>
                     <Link to="/contact" className="text-[16px] text-white">Contact</Link>
                 </div>
 
