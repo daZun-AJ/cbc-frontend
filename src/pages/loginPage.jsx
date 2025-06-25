@@ -1,8 +1,9 @@
+import { useGoogleLogin } from "@react-oauth/google"
 import axios from "axios";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { FcGoogle } from "react-icons/fc";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, Routes, useNavigate } from "react-router-dom";
 
 export default function LoginPage() {
 
@@ -30,6 +31,34 @@ export default function LoginPage() {
 
         }
     }
+
+    const googleLogin = useGoogleLogin({
+        onSuccess: (response) => {
+            const accessToken = response.access_token
+
+            axios.post(import.meta.env.VITE_BACKEND_URL + "/api/users/login/google", {
+                accessToken: accessToken
+            })
+            .then(
+                (res) => {
+                    console.log(res)
+                    toast.success("Login Successful")
+
+                    const token = res.data.token
+                    localStorage.setItem("token", token)
+
+                    if (res.data.role === "admin") {
+                        navigate("/admin")
+                    } else {
+                        navigate("/")
+                    }
+                }
+            ).catch((err) => {
+                console.log(err)
+                toast.error("Failed to login")
+            })
+        }
+    })
 
     return (
         <div className="w-full h-screen flex flex-col md:flex-row font-raleway">
@@ -65,6 +94,13 @@ export default function LoginPage() {
                             className="w-full p-[12px] border border-gray-300 rounded-md focus:outline-none focus:ring-2 cursor-pointer"
                         />
 
+                        <Link 
+                        to="/forget"
+                        className="text-[12px] text-gray-600 underline"
+                        >
+                            Forget Password ?
+                        </Link>
+
                         <button
                             onClick={handleLogin}
                             className="w-full p-[12px] mt-[10px] bg-black text-white rounded-md hover:text-primary duration-300 font-semibold"
@@ -82,7 +118,7 @@ export default function LoginPage() {
                         </div>
 
                         <div className="flex justify-center mt-[20px]">
-                            <button className="px-[30px] py-[10px] flex items-center gap-[10px] border border-green-400 rounded-md hover:bg-green-100 duration-300">
+                            <button onClick={() => {googleLogin()}} className="px-[30px] py-[10px] flex items-center gap-[10px] border border-green-400 rounded-md hover:bg-green-100 duration-300">
                                 <FcGoogle className="text-[24px]" />
                                 <span className="font-medium text-sm text-black">Login with Google</span>
                             </button>
