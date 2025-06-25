@@ -1,6 +1,7 @@
 import { Route, Routes } from "react-router-dom"
 import Header from "../components/header"
 import HomePage from "./client/homePage"
+import AboutUsPage from "./client/aboutUsPage"
 
 
 
@@ -13,6 +14,7 @@ export default function Home() {
             <div className="w-full h-full flex flex-col items-center">
                 <Routes path="/*">
                     <Route path="/*" element={<HomePage />} />
+                    <Route path="/about" element={<AboutUsPage />} />
                 </Routes>
             </div>
         </div>

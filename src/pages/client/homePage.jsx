@@ -44,9 +44,11 @@ export default function HomePage() {
                         Crystal Beauty Care (CBC) is a skincare brand inspired by nature and perfected with science.
                         We believe every individual deserves to glow confidently.
                     </p>
-                    <SecondaryButton>
-                        Learn More <LuArrowUpRight />
-                    </SecondaryButton>
+                    <Link to="/about">
+                        <SecondaryButton>
+                            Learn More <LuArrowUpRight />
+                        </SecondaryButton>
+                    </Link>
                 </div>
 
                 <div className="flex-1">

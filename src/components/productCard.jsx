@@ -10,7 +10,7 @@ export default function ProductCard() {
                 <h3 className="text-[12px] font-semibold">Product Name</h3>
                 <div className="flex flex-row gap-[10px] mt-[10px] items-center justify-between">
                     <h1 className="text-[18px] font-bold">$100</h1>
-                    <button className="w-[40px] h-[40px] border-[2px] border-primary hover:bg-primary/20 rounded-md flex justify-center items-center duration-300">
+                    <button className="w-[40px] h-[40px] border-[2px] border-primary hover:bg-primary/20 rounded-md flex justify-center items-center duration-300 cursor-pointer">
                         <MdAddShoppingCart />
                     </button>
                 </div>
