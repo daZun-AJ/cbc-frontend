@@ -2,6 +2,8 @@ import { Route, Routes } from "react-router-dom"
 import Header from "../components/header"
 import HomePage from "./client/homePage"
 import AboutUsPage from "./client/aboutUsPage"
+import ContactPage from "./client/contactPage"
+import ProductsPage from "./client/productsPage"
 
 
 
@@ -15,6 +17,8 @@ export default function Home() {
                 <Routes path="/*">
                     <Route path="/*" element={<HomePage />} />
                     <Route path="/about" element={<AboutUsPage />} />
+                    <Route path="/products" element={<ProductsPage />} />
+                    <Route path="/contact" element={<ContactPage />} />
                 </Routes>
             </div>
         </div>

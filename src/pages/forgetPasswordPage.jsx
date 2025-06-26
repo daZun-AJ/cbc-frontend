@@ -45,7 +45,7 @@ export default function ForgetPasswordPage() {
   return (
     <div className="w-full h-screen flex justify-center items-center bg-gray-50">
       {otpSent ? (
-        <div className="w-[400px] p-[40px] flex flex-col gap-[20px] justify-center items-center rounded-2xl bg-primary/5">
+        <div className="w-[400px] p-[40px] flex flex-col gap-[20px] justify-center items-center rounded-2xl bg-primary/10">
           <Link to="/" className="text-[24px] font-raleway mb-[30px]">
             CBC
           </Link>
@@ -56,26 +56,29 @@ export default function ForgetPasswordPage() {
             </p>
           </div>
 
-          <input
-            type="text"
-            placeholder="Enter OTP"
-            value={otp}
-            onChange={(e) => setOtp(e.target.value)}
-            className="w-full p-[10px] border-2 rounded-md"
-          />
+          <div className="w-full flex flex-col gap-[10px] items-end">
+            <input
+                type="text"
+                placeholder="Enter OTP"
+                value={otp}
+                onChange={(e) => setOtp(e.target.value)}
+                className="w-full p-[10px] border-2 rounded-md bg-white border-gray-200"
+            />
+            <button className="w-fit p-[10px] bg-primary text-white rounded-md hover:bg-primary/80 duration-300" onClick={() => sentOtp()}>Resent Otp</button>
+          </div>
           <input
             type="password"
             placeholder="New Password"
             value={newPassword}
             onChange={(e) => setNewPassword(e.target.value)}
-            className="w-full p-[10px] border-2 rounded-md"
+            className="w-full p-[10px] border-2 rounded-md bg-white border-gray-200"
           />
           <input
             type="password"
             placeholder="Confirm Password"
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
-            className="w-full p-[10px] border-2 rounded-md"
+            className="w-full p-[10px] border-2 rounded-md bg-white border-gray-200"
           />
 
           <button 
@@ -89,7 +92,7 @@ export default function ForgetPasswordPage() {
           </Link>
         </div>
       ) : (
-        <div className="w-[400px] p-[40px] flex flex-col gap-[20px] justify-center items-center rounded-2xl bg-primary/5">
+        <div className="w-[400px] p-[40px] flex flex-col gap-[20px] justify-center items-center rounded-2xl bg-primary/10">
           <Link to="/" className="text-[24px] font-raleway mb-[30px]">
             CBC
           </Link>
@@ -107,7 +110,7 @@ export default function ForgetPasswordPage() {
             placeholder="example@gmail.com"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="w-full p-[10px] border-2 rounded-md"
+            className="w-full p-[10px] border-2 rounded-md bg-white border-gray-200"
           />
 
           <button
