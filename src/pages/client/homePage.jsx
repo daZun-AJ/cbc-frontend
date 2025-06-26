@@ -4,8 +4,32 @@ import { LuArrowUpRight } from "react-icons/lu";
 import ProductCard from "../../components/productCard";
 import ReviewCard from "../../components/reviewCard";
 import Footer from "../../components/footer";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 export default function HomePage() {
+
+    const [products, setProducts] = useState([]);
+    const [reviews, setReviews] = useState([]);
+
+    useEffect(() => {
+        axios.get(import.meta.env.VITE_BACKEND_URL + "/api/products")
+        .then((res) => {
+            setProducts(res.data);
+        }).catch((err) => {
+            console.log(err);
+        })
+    }, [])
+
+    useEffect(() => {
+        axios.get(import.meta.env.VITE_BACKEND_URL + "/api/reviews")
+        .then((res) => {
+            setReviews(res.data);
+        }).catch((err) => {
+            console.log(err);
+        })
+    }, [])
+
     return (
         <div className="w-full max-w-[1200px] mx-auto px-[20px] mt-[40px] flex flex-col gap-[120px]">
 
@@ -67,10 +91,11 @@ export default function HomePage() {
                 </div>
 
                 <div className="w-full flex flex-wrap gap-[10px] justify-center">
-                    <ProductCard />
-                    <ProductCard />
-                    <ProductCard />
-                    <ProductCard />
+                    {
+                        products.slice(0, 4).map((product) => (
+                            <ProductCard key={product.productId} product={product} />
+                        ))
+                    }
                 </div>
             </div>
 
@@ -80,12 +105,11 @@ export default function HomePage() {
                 <h1 className="text-[20px] font-medium">What Our Customers Say</h1>
 
                 <div className="w-full flex flex-wrap gap-[10px] mt-[20px] justify-center">
-                    <ReviewCard />
-                    <ReviewCard />
-                    <ReviewCard />
-                    <ReviewCard />
-                    <ReviewCard />
-                    <ReviewCard />
+                    {
+                        reviews.slice(0, 4).map((review) => (
+                            <ReviewCard key={review.reviewId} review={review} />
+                        ))
+                    }
                 </div>
 
                 <Link to="/reviews" className="text-primary text-[14px] underline hover:text-green-500 duration-300 mt-[40px]">

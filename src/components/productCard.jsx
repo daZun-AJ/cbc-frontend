@@ -19,7 +19,7 @@ export default function ProductCard({ product }) {
             </div>
             
             <div className="flex flex-col">
-                <h3 className="text-[12px] font-semibold">{product.name}</h3>
+                <h3 className="text-[12px] md:text-[14px] font-semibold md-[10px]">{product.name}</h3>
                 <div className="flex flex-row gap-[10px] mt-[10px] items-center justify-between">
                     <h1 className="text-[18px] font-bold">Rs. {product.price}</h1>
                     <button className="w-[40px] h-[40px] border-[2px] border-primary hover:bg-primary/20 rounded-md flex justify-center items-center duration-300 cursor-pointer">
