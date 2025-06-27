@@ -3,6 +3,7 @@ import ProductCard from "../../components/productCard";
 import axios from "axios";
 import toast from "react-hot-toast";
 import Loading from "../../components/loading";
+import Footer from "../../components/footer";
 
 
 export default function ProductsPage() {
@@ -50,6 +51,8 @@ export default function ProductsPage() {
                     })
                 }
             </div>
+
+            <Footer />
 
         </div>
     )

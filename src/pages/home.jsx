@@ -4,6 +4,7 @@ import HomePage from "./client/homePage"
 import AboutUsPage from "./client/aboutUsPage"
 import ContactPage from "./client/contactPage"
 import ProductsPage from "./client/productsPage"
+import ProductOverviewPage from "./client/productOverviewPage"
 
 
 
@@ -18,6 +19,7 @@ export default function Home() {
                     <Route path="/*" element={<HomePage />} />
                     <Route path="/about" element={<AboutUsPage />} />
                     <Route path="/products" element={<ProductsPage />} />
+                    <Route path="/overview/:id" element={<ProductOverviewPage />} />
                     <Route path="/contact" element={<ContactPage />} />
                 </Routes>
             </div>

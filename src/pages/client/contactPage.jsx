@@ -7,7 +7,7 @@ import { RiBuilding2Line } from "react-icons/ri";
 export default function ContactPage() {
     return (
         <div className="w-full flex flex-col justify-center items-center max-w-[1200px] gap-[120px] mx-auto">
-            <div className="w-full  px-[20px] mt-[40px] flex flex-col lg:flex-row font-raleway">
+            <div className="w-full  px-[20px] mt-[40px] flex flex-col lg:flex-row justify-between font-raleway">
                 <h1 className="text-[76px] md:text-[124px] md:w-[570px]">Let’s Connect!</h1>
 
                 <div className="w-full md:w-[490px]">
