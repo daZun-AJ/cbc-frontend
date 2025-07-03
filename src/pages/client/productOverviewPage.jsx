@@ -6,6 +6,8 @@ import { MdAddShoppingCart } from "react-icons/md";
 import ImageSlider from "../../components/imageSlider";
 import Loading from "../../components/loading";
 import Footer from "../../components/footer";
+import { addToCart, getCart } from "../../utils/cart";
+import toast from "react-hot-toast";
 
 export default function ProductOverviewPage() {
     const { id: productId } = useParams();
@@ -47,7 +49,7 @@ export default function ProductOverviewPage() {
                         <ImageSlider props={{ images: product.images }} />
                     </div>
 
-                    <div className="w-full lg:w-[600px] flex flex-col justify-between">
+                    <div className="w-full lg:w-[510px] flex flex-col justify-between">
                         <div>
                             <h1 className="text-3xl font-bold text-black mb-2">
                                 {product.name}
@@ -79,7 +81,16 @@ export default function ProductOverviewPage() {
                             </p>
 
                             <div className="flex items-center gap-4">
-                                <SecondaryButton className="bg-black text-white hover:bg-gray-900 transition-all">
+                                <SecondaryButton
+                                onClick={() => {
+                                    console.log("Old Cart");
+                                    console.log(getCart())
+                                    addToCart(product, 1)
+                                    console.log("new cart")
+                                    console.log(getCart())
+                                    toast.success("Product Added to cart successfully")
+                                }}
+                                className="bg-black text-white hover:bg-gray-900 transition-all">
                                     Add to Cart <MdAddShoppingCart className="ml-2" />
                                 </SecondaryButton>
                                 {product.stock > 0 && (

@@ -5,6 +5,8 @@ import AboutUsPage from "./client/aboutUsPage"
 import ContactPage from "./client/contactPage"
 import ProductsPage from "./client/productsPage"
 import ProductOverviewPage from "./client/productOverviewPage"
+import CartPage from "./client/cartPage"
+import CheckoutPage from "./client/checkoutPage"
 
 
 
@@ -21,6 +23,8 @@ export default function Home() {
                     <Route path="/products" element={<ProductsPage />} />
                     <Route path="/overview/:id" element={<ProductOverviewPage />} />
                     <Route path="/contact" element={<ContactPage />} />
+                    <Route path="/cart" element={<CartPage />} />
+                    <Route path="/checkout" element={<CheckoutPage />} />
                 </Routes>
             </div>
         </div>

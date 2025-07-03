@@ -25,7 +25,7 @@ export default function Header() {
                     <Link className="p-[10px] border-[2px] border-primary rounded-full text-[16px] text-white hover:bg-green-400/20 duration-300">
                         <FiBox />
                     </Link>
-                    <Link className="p-[10px] border-[2px] border-primary rounded-full text-[16px] text-white hover:bg-green-400/20 duration-300">
+                    <Link to="/cart" className="p-[10px] border-[2px] border-primary rounded-full text-[16px] text-white hover:bg-green-400/20 duration-300">
                         <MdOutlineShoppingCart />
                     </Link>
                     <Link to="/login" 
@@ -80,9 +80,9 @@ export default function Header() {
                     <Link className="p-[10px] border-[2px] border-primary rounded-full text-[16px] text-white hover:bg-green-400/20 duration-300">
                         <FiBox />
                     </Link>
-                    <Link className="p-[10px] border-[2px] border-primary rounded-full text-[16px] text-white hover:bg-green-400/20 duration-300">
+                    <a href="/cart" className="p-[10px] border-[2px] border-primary rounded-full text-[16px] text-white hover:bg-green-400/20 duration-300">
                         <MdOutlineShoppingCart />
-                    </Link>
+                    </a>
                 </div>
 
                 <Link to="/login" 
