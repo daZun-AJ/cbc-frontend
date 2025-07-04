@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { PrimaryButton, SecondaryButton } from "../../components/buttons";
 import { MdAddShoppingCart } from "react-icons/md";
 import ImageSlider from "../../components/imageSlider";
@@ -13,6 +13,7 @@ export default function ProductOverviewPage() {
     const { id: productId } = useParams();
     const [status, setStatus] = useState("loading");
     const [product, setProduct] = useState(null);
+    const navigate = useNavigate();
 
     useEffect(() => {
         axios
@@ -88,13 +89,28 @@ export default function ProductOverviewPage() {
                                     addToCart(product, 1)
                                     console.log("new cart")
                                     console.log(getCart())
-                                    toast.success("Product Added to cart successfully")
+                                    toast.success("Product Added to cart")
                                 }}
                                 className="bg-black text-white hover:bg-gray-900 transition-all">
                                     Add to Cart <MdAddShoppingCart className="ml-2" />
                                 </SecondaryButton>
                                 {product.stock > 0 && (
-                                    <PrimaryButton className="bg-green-600 hover:bg-green-700 transition-all text-white">
+                                    <PrimaryButton 
+                                    className="bg-green-600 hover:bg-green-700 transition-all text-white"
+                                    onClick={() => {
+                                        navigate("/checkout", {
+                                             state: [{ 
+                                                productId: product.productId,
+                                                name: product.name,
+                                                image: product.images[0],
+                                                price: product.price,
+                                                labeledPrice: product.labeledPrice,
+                                                quantity: 1
+                                              }] 
+                                            }
+                                        )
+                                    }}
+                                    >
                                         Buy Now
                                     </PrimaryButton>
                                 )}
