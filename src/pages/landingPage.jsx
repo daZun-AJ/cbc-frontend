@@ -1,7 +1,7 @@
-import Footer from "./components/footer";
-import Header from "./components/header";
-import ProductCard from "./components/productCard";
-import ReviewCard from "./components/reviewCard";
+import Footer from "../components/footer";
+import Header from "../components/header";
+import ProductCard from "../components/productCard";
+import ReviewCard from "../components/reviewCard";
 
 
 
