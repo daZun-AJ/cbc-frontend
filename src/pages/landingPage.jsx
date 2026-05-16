@@ -1,5 +1,5 @@
 import Header from "../components/header";
-import homeImg from "../assets/home-img.png"
+import homeImg from "/home-img.png"
 import { GoArrowUpRight } from "react-icons/go";
 import { SiAndela } from "react-icons/si";
 import { IoCheckmarkDoneCircle } from "react-icons/io5";
@@ -16,7 +16,6 @@ import Footer from "../components/footer";
 export default function LandingPage() {
   return (
     <div className="w-full min-h-screen flex flex-col p-[10px] items-center font-raleway">
-      <Header />
 
       <div className="w-full flex flex-col items-center justify-center mt-[50px]">
         {/* image */}
