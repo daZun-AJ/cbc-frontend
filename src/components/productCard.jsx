@@ -5,15 +5,16 @@ import { MdAddShoppingCart } from "react-icons/md";
 export default function ProductCard() {
     
     return (
-        <div className="w-[170px] h-fit md:w-[280px] p-1 font-raleway hover:shadow-2xl hover:scale-101 duration-300 rounded-md cursor-pointer">
-            <div className="relative">
+        <div className="group w-[170px] h-fit md:w-[280px] p-1 font-raleway duration-300 rounded-md cursor-pointer">
+            <div className="relative overflow-hidden rounded-md">
                 <img 
-                src="/public/product-img.jpg" 
-                alt="product image"
-                className="w-full h-[170px] md:w-[280px] object-cover" 
+                    src="/public/product-img.jpg" 
+                    alt="product image"
+                    className="w-full h-[170px] md:w-[280px] object-cover transition-transform duration-300 group-hover:scale-105"
                 />
+
                 <p
-                className="mt-2 inline-block px-2 py-1 text-[10px] font-bold rounded-full absolute top-[5px] right-[5px] bg-[#05DF7240] text-green-600"
+                    className="mt-2 inline-block px-2 py-1 text-[10px] font-bold rounded-full absolute top-[5px] right-[5px] bg-[#05DF7240] text-green-600"
                 >
                     in stock
                 </p>
