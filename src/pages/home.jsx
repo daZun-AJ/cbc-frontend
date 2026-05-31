@@ -2,6 +2,8 @@ import { Route, Routes } from "react-router-dom";
 import LandingPage from "./landingPage";
 import Header from "../components/header";
 import ContactPage from "./client/contactPage";
+import AboutUsPage from "./client/aboutUsPage";
+import ProductsPage from "./client/productsPage";
 
 export default function Home() {
     
@@ -13,6 +15,8 @@ export default function Home() {
                 <Routes path="/*">
                     <Route path="/*" element={<LandingPage />} />
                     <Route path="/contact" element={<ContactPage />} />
+                    <Route path="/about" element={<AboutUsPage />} />
+                    <Route path="/products" element={<ProductsPage />} />
                 </Routes>
             </div>
         </div>
