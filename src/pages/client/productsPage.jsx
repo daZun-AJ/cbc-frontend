@@ -1,17 +1,54 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ProductCard from "../../components/productCard";
 import Footer from "../../components/footer";
-import { products as allProducts } from "../../data/products";
+import axios from "axios";
+import toast from "react-hot-toast";
+import Loading from "../../components/loading";
 
 export default function ProductsPage() {
+    const [products, setProducts] = useState([]);
     const [query, setQuery] = useState("");
+    const [isLoading, setIsLoading] = useState(true);
 
-    const filteredProducts = allProducts.filter((product) =>
-        product.name.toLowerCase().includes(query.toLowerCase()) ||
-        product.altNames.some((name) =>
-            name.toLowerCase().includes(query.toLowerCase())
-        )
-    );
+    useEffect(() => {
+        fetchAllProducts();
+    }, []);
+
+    const fetchAllProducts = async () => {
+        setIsLoading(true);
+
+        try {
+            const res = await axios.get(import.meta.env.VITE_BACKEND_URL + "/api/products")
+            setProducts(res.data)
+        } catch (err) {
+            toast.error("Failed to fetch products");
+            console.log(err);
+        } finally {
+            setIsLoading(false)
+        }
+    }
+
+    const handleSearch = async (value) => {
+        setQuery(value);
+        setIsLoading(true);
+
+        if (value.trim() === "") {
+            fetchAllProducts();
+            return;
+        }
+
+        try {
+            const response = await axios.get(
+                `${import.meta.env.VITE_BACKEND_URL}/api/products/search/${value}`
+            )
+            setProducts(response.data)
+        } catch (error) {
+            toast.error("Failed to fetch products")
+            console.log(error);            
+        } finally {
+            setIsLoading(false);
+        }
+    }
     
     return (
         <div className="w-full max-w-[1200px] mx-auto px-[10px] mt-[40px] flex flex-col gap-[50px]">
@@ -27,24 +64,23 @@ export default function ProductsPage() {
                         className="w-[400px] border border-gray-400 p-[10px] outline-none"
                         placeholder="Search"
                         value={query}
-                        onChange={(e) => setQuery(e.target.value)}
+                        onChange={(e) => handleSearch(e.target.value)}
                     />
                 </div>
             </div>
 
             <div className="w-full flex flex-wrap items-center justify-center gap-[20px]">
-                {filteredProducts.length > 0 ? (
-                    filteredProducts.map((product) => (
-                        <ProductCard
-                            key={product.productId}
-                            product={product}
-                        />
-                    ))
-                ) : (
-                    <p className="text-center text-gray-500">
-                        No products found.
-                    </p>
-                )}
+                {
+                    isLoading ? (
+                        <Loading />
+                    ) : products.length > 0 ? (
+                        products.map((product) => (
+                            <ProductCard key={product._id} product={product} />
+                        ))
+                    ) : (
+                        <p className="text-center text-gray-500">No products found.</p>
+                    )
+                }
             </div>
 
             <Footer />
