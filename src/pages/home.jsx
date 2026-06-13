@@ -4,6 +4,7 @@ import Header from "../components/header";
 import ContactPage from "./client/contactPage";
 import AboutUsPage from "./client/aboutUsPage";
 import ProductsPage from "./client/productsPage";
+import ReviewPage from "./client/reviewsPage";
 
 export default function Home() {
     
@@ -17,6 +18,7 @@ export default function Home() {
                     <Route path="/contact" element={<ContactPage />} />
                     <Route path="/about" element={<AboutUsPage />} />
                     <Route path="/products" element={<ProductsPage />} />
+                    <Route path="/reviews" element={<ReviewPage />} />
                 </Routes>
             </div>
         </div>

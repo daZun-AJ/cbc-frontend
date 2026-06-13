@@ -12,8 +12,22 @@ import { LuArrowUpRight } from "react-icons/lu";
 import ProductCard from "../components/productCard";
 import ReviewCard from "../components/reviewCard";
 import Footer from "../components/footer";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 export default function LandingPage() {
+
+  const [products, setProducts] = useState([]);
+  
+  useEffect(() => {
+    axios.get(import.meta.env.VITE_BACKEND_URL + "/api/products")
+    .then((res) => {
+        setProducts(res.data)
+    }).catch((err) => {
+        console.log(err);
+    })
+  }, [])
+
   return (
     <div className="w-full min-h-screen flex flex-col p-[10px] items-center font-raleway">
 
@@ -102,9 +116,13 @@ export default function LandingPage() {
             </div>
 
             <div className="w-full flex flex-wrap gap-[10px] justify-center">
-                <ProductCard />
-                <ProductCard />
-                <ProductCard />
+                {
+                    products.slice(0, 4).map((product) => {
+                        return (
+                            <ProductCard key={product.productId} product={product} />
+                        )
+                    })
+                }
             </div>
         </div>
 
