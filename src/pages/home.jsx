@@ -5,6 +5,7 @@ import ContactPage from "./client/contactPage";
 import AboutUsPage from "./client/aboutUsPage";
 import ProductsPage from "./client/productsPage";
 import ReviewPage from "./client/reviewsPage";
+import ProductDetailPage from "./client/productDetailPage";
 
 export default function Home() {
     
@@ -19,6 +20,7 @@ export default function Home() {
                     <Route path="/about" element={<AboutUsPage />} />
                     <Route path="/products" element={<ProductsPage />} />
                     <Route path="/reviews" element={<ReviewPage />} />
+                    <Route path="/overview/:id" element={<ProductDetailPage />} />
                 </Routes>
             </div>
         </div>

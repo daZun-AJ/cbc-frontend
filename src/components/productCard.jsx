@@ -1,11 +1,14 @@
 import { MdAddShoppingCart } from "react-icons/md";
+import { Link } from "react-router-dom";
 
 
 
 export default function ProductCard({product}) {
     
     return (
-        <div className="group w-[170px] h-fit md:w-[280px] p-1 font-raleway duration-300 rounded-md cursor-pointer">
+        <Link
+        to={`/overview/${product.productId}`} 
+        className="group w-[170px] h-fit md:w-[280px] p-1 font-raleway duration-300 rounded-md cursor-pointer">
             <div className="relative overflow-hidden rounded-md">
                 <img 
                     src={product.images[0]} 
@@ -30,7 +33,7 @@ export default function ProductCard({product}) {
                     </button>
                 </div>
             </div>
-        </div>
+        </Link>
     )
 
 }
