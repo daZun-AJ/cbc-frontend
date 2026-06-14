@@ -18,11 +18,21 @@ import axios from "axios";
 export default function LandingPage() {
 
   const [products, setProducts] = useState([]);
+  const [reviews, setReviews] = useState([]);
   
   useEffect(() => {
     axios.get(import.meta.env.VITE_BACKEND_URL + "/api/products")
     .then((res) => {
         setProducts(res.data)
+    }).catch((err) => {
+        console.log(err);
+    })
+  }, [])
+
+  useEffect(() => {
+    axios.get(import.meta.env.VITE_BACKEND_URL + "/api/reviews")
+    .then((res) => {
+        setReviews(res.data);
     }).catch((err) => {
         console.log(err);
     })
@@ -39,7 +49,7 @@ export default function LandingPage() {
             alt="hero section image"
             className="w-90 h-auto "
             />
-            <div className="w-150 h-70 absolute top-[30%] md:top-[29%]  bg-linear-to-t from-white to-transparent"/>
+            <div className="w-150 h-70 absolute top-[30%] md:top-[30%]  bg-linear-to-t from-white to-transparent"/>
         </div>
         {/* contents */}
         <div className="mt-[60px] flex flex-col items-center md:mt-[100px]">
@@ -130,9 +140,13 @@ export default function LandingPage() {
         <div className="w-full flex flex-col items-center font-raleway mb-[50px]">
             <h1 className="text-[20px] font-medium">What Our Customers Say</h1>
             <div className="w-full flex flex-wrap gap-[10px] mt-[20px] justify-center items-center">
-                <ReviewCard />
-                <ReviewCard />
-                <ReviewCard />
+                {
+                    reviews.slice(0,6).map((item) => {
+                        return (
+                            <ReviewCard key={item.reviewId} review={item} />
+                        )
+                    })
+                }
             </div>
             <Link to="/reviews" className="text-primary text-[14px] underline hover:text-green-500 duration-300 mt-[40px]">
                 View All

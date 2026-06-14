@@ -39,9 +39,11 @@ export default function ReviewPage() {
                     isLoading ? (
                         <Loading />
                     ) : reviews.length > 0 ? (
-                        reviews.map((item) => (
-                            <ReviewCard key={item._id} item={item} />
-                        ))
+                        reviews.slice(0,6).map((item) => {
+                            return (
+                                <ReviewCard key={item.reviewId} review={item} />
+                            )
+                        })
                     ) : (
                         <p className="text-center text-gray-500">No reviews found.</p>
                     )
