@@ -4,6 +4,8 @@ import AdminSidebar from "../components/adminSideBar"
 import AdminProductsPage from "./admin/adminProductsPage"
 import AdminUsersPage from "./admin/adminUsersPage"
 import AdminOrdersPage from "./admin/adminOrdersPage"
+import AddProductPage from "./admin/addProductPage"
+import EditProductPage from "./admin/editProductPage"
 
 
 export default function AdminPage() {
@@ -19,6 +21,8 @@ export default function AdminPage() {
                     <Route path="/products" element={<AdminProductsPage />} />
                     <Route path="/users" element={<AdminUsersPage />} />
                     <Route path="/orders" element={<AdminOrdersPage />} />
+                    <Route path="/products/add" element={<AddProductPage />} />
+                    <Route path="/products/edit/:id" element={<EditProductPage />} />
                 </Routes>
             </div>
 
