@@ -127,11 +127,29 @@ export default function LandingPage() {
 
             <div className="w-full flex flex-wrap gap-[10px] justify-center">
                 {
-                    products.slice(0, 4).map((product) => {
-                        return (
-                            <ProductCard key={product.productId} product={product} />
-                        )
-                    })
+                    products.length > 0 ? (
+                        products
+                            .filter((product) => {
+                                console.log(
+                                    product.name,
+                                    "stock:", product.stock,
+                                    "isAvailable:", product.isAvailable
+                                );
+
+                                return Number(product.stock) > 0 &&
+                                    product.isAvailable === true;
+                            })
+                            .map((product) => (
+                                <ProductCard
+                                    key={product._id}
+                                    product={product}
+                                />
+                            ))
+                    ) : (
+                        <p className="text-center text-gray-500">
+                            No products found.
+                        </p>
+                    )
                 }
             </div>
         </div>

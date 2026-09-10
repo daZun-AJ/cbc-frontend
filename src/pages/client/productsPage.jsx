@@ -74,11 +74,27 @@ export default function ProductsPage() {
                     isLoading ? (
                         <Loading />
                     ) : products.length > 0 ? (
-                        products.map((product) => (
-                            <ProductCard key={product._id} product={product} />
-                        ))
+                        products
+                            .filter((product) => {
+                                console.log(
+                                    product.name,
+                                    "stock:", product.stock,
+                                    "isAvailable:", product.isAvailable
+                                );
+
+                                return Number(product.stock) > 0 &&
+                                    product.isAvailable === true;
+                            })
+                            .map((product) => (
+                                <ProductCard
+                                    key={product._id}
+                                    product={product}
+                                />
+                            ))
                     ) : (
-                        <p className="text-center text-gray-500">No products found.</p>
+                        <p className="text-center text-gray-500">
+                            No products found.
+                        </p>
                     )
                 }
             </div>
