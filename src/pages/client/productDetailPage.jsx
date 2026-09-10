@@ -6,12 +6,21 @@ import ImageSlider from "../../components/imageSlider";
 import { PrimaryButton, SecondaryButton } from "../../components/buttons";
 import { MdAddShoppingCart } from "react-icons/md";
 import Footer from "../../components/footer";
+import { useCart } from "../../context/cartContext";
+import toast from "react-hot-toast";
 
 export default function ProductDetailPage() {
     const { id: productId } = useParams();
     const [status, setStatus] = useState("loading");
     const [product, setProduct] = useState(null);
+    const [qty, setQty] = useState(1);
     const navigate = useNavigate();
+    const { addToCart } = useCart();
+
+    function handleAddToCart() {
+        addToCart(product, qty);
+        toast.success(`${product.name} added to cart`);
+    }
 
     useEffect(() => {
         axios
@@ -79,8 +88,32 @@ export default function ProductDetailPage() {
                                 {product.description}
                             </p>
 
+                            {product.stock > 0 && (
+                                <div className="flex items-center gap-3 mb-4">
+                                    <span className="text-sm text-gray-500">Quantity</span>
+                                    <div className="flex items-center border border-gray-300 rounded-md">
+                                        <button
+                                        onClick={() => setQty((q) => Math.max(1, q - 1))}
+                                        className="w-[36px] h-[36px] flex items-center justify-center hover:bg-gray-100 duration-200 cursor-pointer"
+                                        >
+                                            −
+                                        </button>
+                                        <span className="w-[40px] text-center">{qty}</span>
+                                        <button
+                                        onClick={() => setQty((q) => Math.min(product.stock, q + 1))}
+                                        className="w-[36px] h-[36px] flex items-center justify-center hover:bg-gray-100 duration-200 cursor-pointer"
+                                        >
+                                            +
+                                        </button>
+                                    </div>
+                                </div>
+                            )}
+
+
                             <div className="flex items-center gap-4">
-                                <SecondaryButton className="bg-black text-white hover:bg-gray-900 transition-all">
+                                <SecondaryButton
+                                onClick={handleAddToCart} 
+                                className="bg-black text-white hover:bg-gray-900 transition-all">
                                     Add to Cart 
                                     <MdAddShoppingCart className="ml-2" />
                                 </SecondaryButton>

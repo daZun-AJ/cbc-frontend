@@ -1,9 +1,26 @@
 import { MdAddShoppingCart } from "react-icons/md";
 import { Link } from "react-router-dom";
+import { useCart } from "../context/cartContext";
+import toast from "react-hot-toast";
 
 
 
 export default function ProductCard({product}) {
+    
+    const { addToCart } = useCart()
+
+    function handleAddToCart(e) {
+        e.preventDefault()
+        e.stopPropagation()
+
+        if (!product.isAvailable || product.stock <= 0) {
+            toast.error("This product is out of stock")
+            return
+        }
+
+        addToCart(product, 1)
+        toast.success(`${product.name} added to cart`)
+    }
     
     return (
         <Link
@@ -28,7 +45,9 @@ export default function ProductCard({product}) {
                 <h3 className="text-[12px] md:text-[14px] font-semibold md-[10px]">{product.name}</h3>
                 <div className="flex flex-row gap-[10px] mt-[10px] items-center justify-between">
                     <h1 className="text-[18px] font-bold">Rs. {product.price}</h1>
-                    <button className="w-[40px] h-[40px] border-[2px] border-primary hover:bg-primary/20 rounded-md flex justify-center items-center duration-300 cursor-pointer">
+                    <button 
+                    onClick={handleAddToCart}
+                    className="w-[40px] h-[40px] border-[2px] border-primary hover:bg-primary/20 rounded-md flex justify-center items-center duration-300 cursor-pointer">
                         <MdAddShoppingCart />
                     </button>
                 </div>
