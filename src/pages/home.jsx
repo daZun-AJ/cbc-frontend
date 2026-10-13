@@ -7,6 +7,8 @@ import ProductsPage from "./client/productsPage";
 import ReviewPage from "./client/reviewsPage";
 import ProductDetailPage from "./client/productDetailPage";
 import CartPage from "./client/cartPage";
+import CheckoutPage from "./client/checkoutPage";
+import OrderSuccessPage from "./client/orderSuccessPage";
 
 export default function Home() {
     
@@ -23,6 +25,8 @@ export default function Home() {
                     <Route path="/reviews" element={<ReviewPage />} />
                     <Route path="/overview/:id" element={<ProductDetailPage />} />
                     <Route path="/cart" element={<CartPage />} />
+                    <Route path="/checkout" element={<CheckoutPage />} />
+                    <Route path="/order-success" element={<OrderSuccessPage />} />
                 </Routes>
             </div>
         </div>
